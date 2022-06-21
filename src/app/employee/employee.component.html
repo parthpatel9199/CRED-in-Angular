@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-4">
+      <h1 class="text">Employee</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="text">First Name</th>
+            <th class="text">Last Name</th>
+            <th class="text">Salary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>{{ employee.firstName }}</td>
+            <td>{{ employee.lastName }}</td>
+            <td>{{ employee.salary }}</td>
+
+            <td>
+              <button type="button" class="btn btn-warning" (click)="displayEditEmployeeForm(employee)" >Edit</button>
+              <button type="button" class="btn btn-danger" (click)="deleteEmployee(employee)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-success" (click)="displayAddEmployeeForm()">Add Employee</button>
+
+      <div class="mt-4">
+        <form *ngIf="employeeForm">
+          <h2>Add New User</h2>
+          <p>First Name: <input type="text" name="firstName" [(ngModel)]="newEmployee.firstName" /></p>
+          <p>Last Name: <input type="text" name="lastName" [(ngModel)]="newEmployee.lastName" /></p>
+          <p>Salary: <input type="text" name="salary" [(ngModel)]="newEmployee.salary"/></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="addEmployee(newEmployee)">Submit</button>
+          </p>
+        </form>
+
+        <form *ngIf="editEmployeeForm">
+          <h2>Edit User Details</h2>
+          <p>First Name: <input type="text" name="firstName" [(ngModel)]="editedEmployee.firstName"/></p>
+          <p>Last Name: <input type="text" name="lastName"  [(ngModel)]="editedEmployee.lastName"/></p>
+          <p>Salary: <input type="text" name="salary" [(ngModel)]="editedEmployee.salary"/></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="updateEmployee(editedEmployee)" >Submit</button>
+          </p>
+        </form>
+
+    </div>
+  </div>
+</div>
